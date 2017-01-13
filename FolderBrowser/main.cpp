@@ -7,9 +7,19 @@ using namespace fb;
 
 void printTree(Folder* root, int level = 0)
 {
-    cout << string(level, '-') << root->name() << ": " << root->size() << endl;
+    static int padding = 3;
+    for(int i=0; i < level - 1; i++){
+        cout << "|" << string(padding, ' ');
+    }
+    if(level > 0)
+        cout << "|" << string(padding, '-') << root->name();
+    else
+        cout  << root->name();
+
+    cout << ": " << root->size() << " bytes" << endl;
+
     for(auto it = root->nodes().begin(); it != root->nodes().end(); ++it){
-        printTree(*it, level + 4);
+        printTree(*it, level + 1);
     }
 }
 
