@@ -6,7 +6,7 @@ using namespace std;
 using namespace fb;
 
 void printTree(Folder* root, int level = 0)
-{
+{    
     static int padding = 3;
     for(int i=0; i < level - 1; i++){
         cout << "|" << string(padding, ' ');
@@ -25,6 +25,7 @@ void printTree(Folder* root, int level = 0)
 
 int main(int argc, char *argv[])
 {
+    setlocale( LC_ALL,"Russian");
     std::string root_path(argc > 1 ? argv[1] : ".");
     //std::string root_path("D:\\Labs\\My\\FolderBrowser\\build-FolderBrowser-Desktop_Qt_5_5_1_MSVC2010_32bit-Debug");
 
