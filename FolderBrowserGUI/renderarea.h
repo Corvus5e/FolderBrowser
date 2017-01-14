@@ -32,7 +32,7 @@ public slots:
 private:
 
     void drawFolderTree(QPainter& painter, fb::Folder* root, double start_angle, double end_angle, int level = 1);
-    void drawCircle(QPainter& painter, double start_angle, double end_angle, double radius);
+    void drawSegment(QPainter& painter, double start_angle, double end_angle, double radius, double length);
 
     QPen pen;
     QBrush brush;
