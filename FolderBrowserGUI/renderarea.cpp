@@ -34,17 +34,17 @@ void RenderArea::paintEvent(QPaintEvent*)
     painter.restore();
 }
 
-void RenderArea::drawFolderTree(QPainter& painter, fb::Folder* root, double start_angle, double end_angle, int level){
+void RenderArea::drawFolderTree(QPainter& painter, const fb::Folder* root, double start_angle, double end_angle, int level){
     if(root != nullptr){
         double offset = start_angle;
-        painter.setBrush(this->randColor(level * end_angle*end_angle));
+        painter.setBrush(this->randColor(level * end_angle  * QTime::currentTime().msec()));
         if(level == 1){
             painter.drawEllipse(QPoint(0,0), level_radius - 2, level_radius - 2);
         }
         else{
             this->drawSegment(painter, start_angle, end_angle, level*level_radius, level_radius);
         }
-        for(auto it = root->nodes().begin(); it != root->nodes().end(); ++it){
+        for(auto it = root->cnodes().cbegin(); it != root->cnodes().cend(); ++it){
             if(root->size() > 0 && (*it)->size() > 0){
                 double angle_range = (*it)->size() * (end_angle - start_angle)/root->size();
                 drawFolderTree(painter, *it, offset, offset + angle_range, level + 1);
@@ -70,14 +70,10 @@ void RenderArea::drawSegment(QPainter& painter, double start_angle, double end_a
     path.lineTo(hpath.currentPosition());
     path.closeSubpath();
     painter.drawPath(path);
-
-    /*QPainterPathStroker ps;
-    QPainterPath pp = ps.createStroke(path);
-    painter.drawPath(pp);*/
 }
 
-void RenderArea::onTreeBuilt(fb::Folder *folder_root){
-    this->folder_root = folder_root;
+void RenderArea::onTreeBuilt(fb::FolderTree *folder_tree){
+    this->folder_root = folder_tree->getRootFolder();
     this->repaint();
 }
 
@@ -105,7 +101,7 @@ void RenderArea::mouseReleaseEvent(QMouseEvent*){
     last_diff_y = diff_y;
 }
 
-QColor RenderArea::randColor(uint seed){
+QColor RenderArea::randColor(uint seed){    
     qsrand(seed);
     int r = qrand() % 255;
     int g = qrand() % 255;

@@ -7,7 +7,7 @@
 #include <QPen>
 #include <QPixmap>
 
-#include <folder_browser.h>
+#include <foldertree.h>
 
 class RenderArea : public QWidget
 {
@@ -27,11 +27,11 @@ public slots:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event); 
-    void onTreeBuilt(fb::Folder *root);
+    void onTreeBuilt(fb::FolderTree* folder_tree);
 
 private:
 
-    void drawFolderTree(QPainter& painter, fb::Folder* root, double start_angle, double end_angle, int level = 1);
+    void drawFolderTree(QPainter& painter, const fb::Folder* root, double start_angle, double end_angle, int level = 1);
     void drawSegment(QPainter& painter, double start_angle, double end_angle, double radius, double length);
 
     QPen pen;
@@ -47,7 +47,7 @@ private:
     int last_diff_x;
     int last_diff_y;
 
-    fb::Folder* folder_root;
+    const fb::Folder* folder_root;
     int level_radius;
 };
 

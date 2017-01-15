@@ -15,13 +15,10 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     renderarea.cpp \
-    foldertreebuilder.cpp \
-    folder_browser.cpp
+    foldertree.cpp
 
 HEADERS  += mainwindow.h \
     renderarea.h \
-    foldertreebuilder.h \
-    folder_browser.h \
-    dirent.h
+    foldertree.h
 
 FORMS    += mainwindow.ui

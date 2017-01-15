@@ -6,7 +6,7 @@
 #include <QFileSystemModel>
 #include <QTreeView>
 
-#include <foldertreebuilder.h>
+#include <foldertree.h>
 
 namespace Ui {
 
@@ -24,14 +24,16 @@ public:
 private slots:
     void on_pushButton_clicked();    
     void on_treeView_doubleClicked(const QModelIndex &index);
-    void onTreeBuilt(fb::Folder*);
+    void onTreeBuildStarter();
+    void onTreeBuilt(fb::FolderTree*);
 
 private:
     Ui::MainWindow *ui;
     RenderArea* render_area;
     QFileSystemModel *fs_model;    
 
-    FolderTreeBuilder* builder;
+
+    fb::FolderTree* folder_tree;
 };
 
 #endif // MAINWINDOW_H
