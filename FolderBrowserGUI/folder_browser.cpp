@@ -8,7 +8,7 @@ namespace {
 
     void fullPath(std::string& root, std::string& node, std::string& full_path)
     {
-        full_path.assign(root);
+        full_path = root;
         full_path.append("\\");
         full_path.append(node);
     }

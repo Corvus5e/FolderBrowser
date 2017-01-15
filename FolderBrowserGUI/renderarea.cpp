@@ -37,7 +37,7 @@ void RenderArea::paintEvent(QPaintEvent*)
 void RenderArea::drawFolderTree(QPainter& painter, fb::Folder* root, double start_angle, double end_angle, int level){
     if(root != nullptr){
         double offset = start_angle;
-        painter.setBrush(this->randColor(level * end_angle));
+        painter.setBrush(this->randColor(level * end_angle*end_angle));
         if(level == 1){
             painter.drawEllipse(QPoint(0,0), level_radius - 2, level_radius - 2);
         }

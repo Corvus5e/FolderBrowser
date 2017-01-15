@@ -13,9 +13,10 @@ MainWindow::MainWindow(QWidget *parent) :
     fs_model->setRootPath(QDir::currentPath());
     fs_model->setFilter(QDir::Dirs);
 
-    tree = new QTreeView(ui->dir_widget);
-    tree->setModel(fs_model);
-    tree->setRootIndex(fs_model->index(QDir::currentPath()));
+    ui->treeView->setModel(fs_model);
+    ui->treeView->setRootIndex(fs_model->index(QDir::currentPath()));
+
+    ui->path_edit->setText(QDir::currentPath());
 }
 
 MainWindow::~MainWindow()
@@ -32,5 +33,20 @@ void MainWindow::on_pushButton_clicked()
 
     builder = new FolderTreeBuilder(root_path);
     connect(builder, SIGNAL(ready(fb::Folder*)), render_area, SLOT(onTreeBuilt(fb::Folder*)));
-    builder->buildTree();
+    connect(builder, SIGNAL(ready(fb::Folder*)), this, SLOT(onTreeBuilt(fb::Folder*)));
+    builder->buildTree();    
+}
+
+
+void MainWindow::on_treeView_doubleClicked(const QModelIndex &index)
+{
+    QString path =  fs_model->fileInfo(index).absoluteFilePath();
+    ui->treeView->setRootIndex(fs_model->setRootPath(path));
+
+    ui->path_edit->setText(path);
+}
+
+void MainWindow::onTreeBuilt(fb::Folder *folder)
+{
+    ui->size_label->setText(QString::number(folder->size()).append(" bytes"));
 }

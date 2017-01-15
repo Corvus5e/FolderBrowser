@@ -14,16 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="dir_widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>70</y>
-      <width>281</width>
-      <height>291</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="path_edit">
     <property name="geometry">
      <rect>
@@ -35,7 +25,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
@@ -56,8 +47,36 @@
     <property name="geometry">
      <rect>
       <x>520</x>
-      <y>10</y>
-      <width>151</width>
+      <y>20</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>build diagram</string>
+    </property>
+   </widget>
+   <widget class="QTreeView" name="treeView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>271</width>
+      <height>351</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>450</y>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
@@ -67,7 +86,25 @@
      </font>
     </property>
     <property name="text">
-     <string>build diagramm</string>
+     <string>Folder size:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="size_label">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>450</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>N bytes</string>
     </property>
    </widget>
   </widget>

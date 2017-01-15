@@ -22,13 +22,14 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButton_clicked();    
+    void on_treeView_doubleClicked(const QModelIndex &index);
+    void onTreeBuilt(fb::Folder*);
 
 private:
     Ui::MainWindow *ui;
     RenderArea* render_area;
-    QFileSystemModel *fs_model;
-    QTreeView *tree;
+    QFileSystemModel *fs_model;    
 
     FolderTreeBuilder* builder;
 };
