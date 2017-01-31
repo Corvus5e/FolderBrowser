@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     render_area = ui->openGLWidget;
+
+    folder_tree = nullptr;
+
     fs_model = new QFileSystemModel();
     fs_model->setRootPath(QDir::currentPath());
     fs_model->setFilter(QDir::Dirs);
